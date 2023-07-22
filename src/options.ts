@@ -113,7 +113,7 @@ export function defaultOptions(): Options {
     useJsonTimestamp: JsonTimestampOption.RFC3339,
     useMongoObjectId: false,
     oneof: OneofOption.PROPERTIES,
-    esModuleInterop: false,
+    esModuleInterop: true,
     fileSuffix: "",
     importSuffix: "",
     lowerCaseServiceMethods: false,
