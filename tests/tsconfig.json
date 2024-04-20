@@ -6,7 +6,8 @@
     "strict": true,
     "outDir": "build",
     "skipLibCheck": false,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["./*.ts"],
 }
