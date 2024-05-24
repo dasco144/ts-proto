@@ -16,7 +16,7 @@ describe("options", () => {
         "emitImportedFiles": true,
         "enumsAsLiterals": false,
         "env": "both",
-        "esModuleInterop": false,
+        "esModuleInterop": true,
         "exportCommonSymbols": true,
         "fileSuffix": "",
         "forceLong": "number",
