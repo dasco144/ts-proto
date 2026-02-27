@@ -27,7 +27,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. Running `protoc` with `--ts_proto_opt=sharedHelpersFile=true` does not produce an unknown-option error
   2. Running `protoc` without the option (or with `sharedHelpersFile=false`) produces output identical to the current baseline
   3. The option field exists in the `Options` type with a `false` default accessible to all generation code
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 01-01-PLAN.md — Add sharedHelpersFile to Options type, defaultOptions(), and update inline snapshot
 
 ### Phase 2: Shared File Generator
 **Goal**: A `generateSharedHelpers(options)` function exists that returns correct `proto-shared.ts` content — all 23 movable helpers, properly exported, in correct order
