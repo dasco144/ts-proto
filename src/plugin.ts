@@ -12,6 +12,7 @@ import { createTypeMap } from "./types";
 import { BaseContext, createFileContext } from "./context";
 import { getTsPoetOpts, optionsFromParameter } from "./options";
 import { generateTypeRegistry } from "./generate-type-registry";
+import { generateSharedHelpers } from "./generate-shared-helpers";
 
 // this would be the plugin called by the protoc compiler
 async function main() {
@@ -65,6 +66,13 @@ async function main() {
     const code = generateTypeRegistry(ctx);
 
     const content = code.toString({ ...getTsPoetOpts(options, tsProtoVersion, protocVersion), path });
+    files.push({ name: path, content });
+  }
+
+  if (options.sharedHelpersFile) {
+    const path = "proto-shared.ts";
+    const sharedCode = generateSharedHelpers(options);
+    const content = sharedCode.toString({ ...getTsPoetOpts(options, tsProtoVersion, protocVersion), path });
     files.push({ name: path, content });
   }
 
