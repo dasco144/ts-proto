@@ -49,6 +49,7 @@ describe("options", () => {
         "rpcAfterResponse": false,
         "rpcBeforeRequest": false,
         "rpcErrorHandler": false,
+        "sharedHelpersFile": false,
         "snakeToCamel": [
           "json",
           "keys",
