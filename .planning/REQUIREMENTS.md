@@ -13,10 +13,10 @@
 ### Shared File Generation
 
 - [ ] **GEN-01**: When `sharedHelpersFile=true`, a `proto-shared.ts` file is included in the generator output at the output root
-- [ ] **GEN-02**: `proto-shared.ts` contains all safe-to-share helpers appropriate for the current options (DeepPartial, Exact, Builtin, KeysOfUnion, MessageFns, isSet, isObject, longToNumber, numberToLong, bytesFromBase64, base64FromBytes, timestamp helpers, extension types, etc.)
-- [ ] **GEN-03**: All declarations in `proto-shared.ts` are exported (regardless of `exportCommonSymbols` option)
-- [ ] **GEN-04**: When `globalThisPolyfill=true`, the `gt` polyfill IIFE is emitted first in `proto-shared.ts`
-- [ ] **GEN-05**: Helpers that reference user-generated types (MongoDB ObjectId helpers, Struct/Value/ListValue/FieldMask wrapper interfaces) are NOT included in `proto-shared.ts` and continue to be inlined in individual files
+- [x] **GEN-02**: `proto-shared.ts` contains all safe-to-share helpers appropriate for the current options (DeepPartial, Exact, Builtin, KeysOfUnion, MessageFns, isSet, isObject, longToNumber, numberToLong, bytesFromBase64, base64FromBytes, timestamp helpers, extension types, etc.)
+- [x] **GEN-03**: All declarations in `proto-shared.ts` are exported (regardless of `exportCommonSymbols` option)
+- [x] **GEN-04**: When `globalThisPolyfill=true`, the `gt` polyfill IIFE is emitted first in `proto-shared.ts`
+- [x] **GEN-05**: Helpers that reference user-generated types (MongoDB ObjectId helpers, Struct/Value/ListValue/FieldMask wrapper interfaces) are NOT included in `proto-shared.ts` and continue to be inlined in individual files
 
 ### Per-File Import Injection
 
@@ -59,10 +59,10 @@
 | OPT-01 | Phase 1 | Complete (2026-02-27) |
 | OPT-02 | Phase 1 | Complete (2026-02-27) |
 | GEN-01 | Phase 2 | Pending |
-| GEN-02 | Phase 2 | Pending |
-| GEN-03 | Phase 2 | Pending |
-| GEN-04 | Phase 2 | Pending |
-| GEN-05 | Phase 2 | Pending |
+| GEN-02 | Phase 2 | Complete |
+| GEN-03 | Phase 2 | Complete |
+| GEN-04 | Phase 2 | Complete |
+| GEN-05 | Phase 2 | Complete |
 | IMP-01 | Phase 3 | Pending |
 | IMP-02 | Phase 3 | Pending |
 | IMP-03 | Phase 3 | Pending |
