@@ -122,6 +122,7 @@ export type Options = {
   typePrefix: string;
   typeSuffix: string;
   useDuration: DurationOption;
+  sharedHelpersFile: boolean;
 };
 
 export function defaultOptions(): Options {
@@ -196,6 +197,7 @@ export function defaultOptions(): Options {
     typePrefix: "",
     typeSuffix: "",
     useDuration: DurationOption.DURATION,
+    sharedHelpersFile: false,
   };
 }
 
