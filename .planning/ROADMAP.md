@@ -41,7 +41,11 @@ Plans:
   2. All declarations in the returned file use `export` regardless of the `exportCommonSymbols` option value
   3. When `globalThisPolyfill=true`, the `gt` IIFE appears first in the file before any helpers that reference it
   4. Helpers that reference user-generated types (MongoDB ObjectId helpers, Struct/Value/ListValue/FieldMask wrappers) are absent from the returned file
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Implement generateSharedHelpers via TDD (RED→GREEN cycle for GEN-02–GEN-05)
+- [ ] 02-02-PLAN.md — Wire generateSharedHelpers into plugin.ts output pipeline (GEN-01)
 
 ### Phase 3: Import Injection and Wiring
 **Goal**: End-to-end working feature — running `protoc` with `sharedHelpersFile=true` produces `proto-shared.ts` alongside all generated files, and each generated file imports from it instead of inlining helpers
@@ -72,6 +76,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Option Registration | 1/1 | Complete | 2026-02-27 |
-| 2. Shared File Generator | 0/? | Not started | - |
+| 2. Shared File Generator | 0/2 | Not started | - |
 | 3. Import Injection and Wiring | 0/? | Not started | - |
 | 4. Integration Test | 0/? | Not started | - |
