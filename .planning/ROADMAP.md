@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Option Registration** - Add `sharedHelpersFile` boolean option to `src/options.ts`
 - [x] **Phase 2: Shared File Generator** - Implement `generateSharedHelpers()` that produces `proto-shared.ts` content (completed 2026-02-27)
-- [ ] **Phase 3: Import Injection and Wiring** - Switch per-file generation to use `imp()` references and wire generator into `plugin.ts`
+- [x] **Phase 3: Import Injection and Wiring** - Switch per-file generation to use `imp()` references and wire generator into `plugin.ts` (completed 2026-02-27)
 - [ ] **Phase 4: Integration Test** - Add `integration/shared-helpers/` test directory with committed expected output
 
 ## Phase Details
@@ -81,5 +81,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Option Registration | 1/1 | Complete | 2026-02-27 |
 | 2. Shared File Generator | 2/2 | Complete   | 2026-02-27 |
-| 3. Import Injection and Wiring | 1/2 | In Progress|  |
+| 3. Import Injection and Wiring | 2/2 | Complete   | 2026-02-27 |
 | 4. Integration Test | 0/? | Not started | - |

@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-02-28T22:26:53Z"
+last_updated: "2026-02-28T22:29:31Z"
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 7
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -22,12 +22,12 @@ See: .planning/PROJECT.md (updated 2026-02-27)
 
 ## Current Position
 
-Phase: 3 of 4 (Import Injection and Wiring)
-Plan: 1 of 2 in current phase (complete)
-Status: Phase 3 Plan 1 complete
-Last activity: 2026-02-28 — Completed 03-01-PLAN.md
+Phase: 3 of 4 (Import Injection and Wiring) — COMPLETE
+Plan: 2 of 2 in current phase (complete)
+Status: Phase 3 complete (all plans done)
+Last activity: 2026-02-28 — Completed 03-02-PLAN.md
 
-Progress: [████░░░░░░] 40%
+Progress: [██████░░░░] 60%
 
 ## Performance Metrics
 
@@ -42,10 +42,10 @@ Progress: [████░░░░░░] 40%
 |-------|-------|-------|----------|
 | 01-option-registration | 1 | 1 min | 1 min |
 | 02-shared-file-generator | 2 | 4 min | 2 min |
-| 03-import-injection-and-wiring | 1 | 1 min | 1 min |
+| 03-import-injection-and-wiring | 2 | 2 min | 1 min |
 
 **Recent Trend:**
-- Last 5 plans: 1 min, 2 min, 2 min, 1 min
+- Last 5 plans: 1 min, 2 min, 2 min, 1 min, 1 min
 - Trend: -
 
 *Updated after each plan completion*
@@ -70,6 +70,7 @@ Recent decisions affecting current work:
 - sharedHelpersFile block placed after outputTypeRegistry block and before outputIndex block for consistent ordering
 - conditionalUtils string is './proto-shared' + importSuffix; ts-poet's maybeRelativePath resolves relative path per output file automatically
 - Only the per-file generation block gets conditionalUtils; proto-shared.ts and typeRegistry.ts blocks must NOT receive it
+- COMPAT-01 and COMPAT-02 verified: all 130 test suites pass with sharedHelpersFile=false (default) — zero regressions for existing users
 
 ### Pending Todos
 
@@ -82,5 +83,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-28
-Stopped at: Completed 03-01-PLAN.md (Phase 3 plan 1 of 2)
+Stopped at: Completed 03-02-PLAN.md (Phase 3 complete — both plans done)
 Resume file: None

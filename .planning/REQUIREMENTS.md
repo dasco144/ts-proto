@@ -26,8 +26,8 @@
 
 ### Backwards Compatibility
 
-- [ ] **COMPAT-01**: When `sharedHelpersFile=false` (default), generated output is identical to current behavior — no regressions
-- [ ] **COMPAT-02**: All existing integration tests pass unchanged
+- [x] **COMPAT-01**: When `sharedHelpersFile=false` (default), generated output is identical to current behavior — no regressions
+- [x] **COMPAT-02**: All existing integration tests pass unchanged
 
 ### Testing
 
@@ -66,8 +66,8 @@
 | IMP-01 | Phase 3 | Complete |
 | IMP-02 | Phase 3 | Complete |
 | IMP-03 | Phase 3 | Complete |
-| COMPAT-01 | Phase 3 | Pending |
-| COMPAT-02 | Phase 3 | Pending |
+| COMPAT-01 | Phase 3 | Complete |
+| COMPAT-02 | Phase 3 | Complete |
 | TEST-01 | Phase 4 | Pending |
 | TEST-02 | Phase 4 | Pending |
 | TEST-03 | Phase 4 | Pending |
