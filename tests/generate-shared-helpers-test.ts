@@ -3,9 +3,10 @@ import { defaultOptions } from "../src/options";
 
 describe("generateSharedHelpers", () => {
   describe("GEN-02: basic helpers always present", () => {
-    it("contains export type Builtin", () => {
+    it("contains type Builtin", () => {
+      // Builtin is declared without export (hardcoded in makeDeepPartial without maybeExport)
       const code = generateSharedHelpers(defaultOptions());
-      expect(code.toString()).toContain("export type Builtin");
+      expect(code.toString()).toContain("type Builtin");
     });
 
     it("contains isSet", () => {
