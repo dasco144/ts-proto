@@ -53,7 +53,12 @@ async function main() {
   const files = await Promise.all(
     filesToGenerate.map(async (file) => {
       const [path, code] = generateFile({ ...ctx, currentFile: createFileContext(file) }, file);
-      const content = code.toString({ ...getTsPoetOpts(options, tsProtoVersion, protocVersion, file.name), path });
+      const tsPoetOpts = getTsPoetOpts(options, tsProtoVersion, protocVersion, file.name);
+      // IMP-01, IMP-02, IMP-03: redirect ConditionalOutput instances to the shared file
+      if (options.sharedHelpersFile) {
+        tsPoetOpts.conditionalUtils = "./proto-shared" + options.importSuffix;
+      }
+      const content = code.toString({ ...tsPoetOpts, path });
       return { name: path, content };
     }),
   );
