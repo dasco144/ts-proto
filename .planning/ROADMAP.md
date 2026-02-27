@@ -56,7 +56,11 @@ Plans:
   2. Import paths are relative and correct regardless of nesting depth (e.g., `./proto-shared` for root files, `../../proto-shared` for doubly-nested files)
   3. The `importSuffix` option is respected in the import path (e.g., `proto-shared.js` when `importSuffix=.js`)
   4. Running `protoc` without `sharedHelpersFile=true` produces output byte-for-byte identical to the current baseline — no regressions
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — TDD: write import-injection tests (RED) then add conditionalUtils to plugin.ts (GREEN) — IMP-01, IMP-02, IMP-03
+- [ ] 03-02-PLAN.md — Run full test suite to verify COMPAT-01, COMPAT-02 (zero regressions)
 
 ### Phase 4: Integration Test
 **Goal**: The complete feature is validated end-to-end by a committed integration test that will catch any future regression
@@ -77,5 +81,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Option Registration | 1/1 | Complete | 2026-02-27 |
 | 2. Shared File Generator | 2/2 | Complete   | 2026-02-27 |
-| 3. Import Injection and Wiring | 0/? | Not started | - |
+| 3. Import Injection and Wiring | 0/2 | Not started | - |
 | 4. Integration Test | 0/? | Not started | - |
