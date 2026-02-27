@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-last_updated: "2026-02-28T22:04:39Z"
+last_updated: "2026-02-28T22:08:00Z"
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 3
+  completed_plans: 3
 ---
 
 # Project State
@@ -23,11 +23,11 @@ See: .planning/PROJECT.md (updated 2026-02-27)
 ## Current Position
 
 Phase: 2 of 4 (Shared File Generator)
-Plan: 1 of 1 in current phase (complete)
-Status: Phase 2 Plan 1 complete
-Last activity: 2026-02-28 — Completed 02-01-PLAN.md
+Plan: 2 of 2 in current phase (complete)
+Status: Phase 2 Plan 2 complete
+Last activity: 2026-02-28 — Completed 02-02-PLAN.md
 
-Progress: [██░░░░░░░░] 20%
+Progress: [███░░░░░░░] 30%
 
 ## Performance Metrics
 
@@ -41,10 +41,10 @@ Progress: [██░░░░░░░░] 20%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-option-registration | 1 | 1 min | 1 min |
-| 02-shared-file-generator | 1 | 2 min | 2 min |
+| 02-shared-file-generator | 2 | 4 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 1 min, 2 min
+- Last 5 plans: 1 min, 2 min, 2 min
 - Trend: -
 
 *Updated after each plan completion*
@@ -65,6 +65,8 @@ Recent decisions affecting current work:
 - Import ConditionalOutput from ts-poet/build/ConditionalOutput (not exported by ts-poet main index)
 - Builtin type has no export keyword (makeDeepPartial hardcodes without maybeExport) — GEN-03 applies to Exact, DeepPartial, MessageFns, ExtensionFns, ExtensionHolder
 - 19 movable helpers in generateSharedHelpers; 7 excluded for referencing user-generated types
+- generateSharedHelpers takes only Options (not ctx/utils) — plugin.ts does not create a utils/ctx for the shared block
+- sharedHelpersFile block placed after outputTypeRegistry block and before outputIndex block for consistent ordering
 
 ### Pending Todos
 
@@ -77,5 +79,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-28
-Stopped at: Completed 02-01-PLAN.md (Phase 2 plan 1 of 1)
+Stopped at: Completed 02-02-PLAN.md (Phase 2 plan 2 of 2)
 Resume file: None

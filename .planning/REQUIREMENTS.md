@@ -12,7 +12,7 @@
 
 ### Shared File Generation
 
-- [ ] **GEN-01**: When `sharedHelpersFile=true`, a `proto-shared.ts` file is included in the generator output at the output root
+- [x] **GEN-01**: When `sharedHelpersFile=true`, a `proto-shared.ts` file is included in the generator output at the output root
 - [x] **GEN-02**: `proto-shared.ts` contains all safe-to-share helpers appropriate for the current options (DeepPartial, Exact, Builtin, KeysOfUnion, MessageFns, isSet, isObject, longToNumber, numberToLong, bytesFromBase64, base64FromBytes, timestamp helpers, extension types, etc.)
 - [x] **GEN-03**: All declarations in `proto-shared.ts` are exported (regardless of `exportCommonSymbols` option)
 - [x] **GEN-04**: When `globalThisPolyfill=true`, the `gt` polyfill IIFE is emitted first in `proto-shared.ts`
@@ -58,7 +58,7 @@
 |-------------|-------|--------|
 | OPT-01 | Phase 1 | Complete (2026-02-27) |
 | OPT-02 | Phase 1 | Complete (2026-02-27) |
-| GEN-01 | Phase 2 | Pending |
+| GEN-01 | Phase 2 | Complete |
 | GEN-02 | Phase 2 | Complete |
 | GEN-03 | Phase 2 | Complete |
 | GEN-04 | Phase 2 | Complete |
