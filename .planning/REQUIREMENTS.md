@@ -7,8 +7,8 @@
 
 ### Option
 
-- [ ] **OPT-01**: `sharedHelpersFile` boolean option exists in `src/options.ts` with default `false`
-- [ ] **OPT-02**: Option can be passed via `--ts_proto_opt=sharedHelpersFile=true` and is correctly parsed
+- [x] **OPT-01**: `sharedHelpersFile` boolean option exists in `src/options.ts` with default `false`
+- [x] **OPT-02**: Option can be passed via `--ts_proto_opt=sharedHelpersFile=true` and is correctly parsed
 
 ### Shared File Generation
 
@@ -56,8 +56,8 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| OPT-01 | Phase 1 | Pending |
-| OPT-02 | Phase 1 | Pending |
+| OPT-01 | Phase 1 | Complete (2026-02-27) |
+| OPT-02 | Phase 1 | Complete (2026-02-27) |
 | GEN-01 | Phase 2 | Pending |
 | GEN-02 | Phase 2 | Pending |
 | GEN-03 | Phase 2 | Pending |

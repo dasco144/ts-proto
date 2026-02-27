@@ -12,7 +12,7 @@ This milestone adds the `sharedHelpersFile` option to ts-proto, extracting the c
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Option Registration** - Add `sharedHelpersFile` boolean option to `src/options.ts`
+- [x] **Phase 1: Option Registration** - Add `sharedHelpersFile` boolean option to `src/options.ts`
 - [ ] **Phase 2: Shared File Generator** - Implement `generateSharedHelpers()` that produces `proto-shared.ts` content
 - [ ] **Phase 3: Import Injection and Wiring** - Switch per-file generation to use `imp()` references and wire generator into `plugin.ts`
 - [ ] **Phase 4: Integration Test** - Add `integration/shared-helpers/` test directory with committed expected output
@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 1 plan
 
 Plans:
-- [ ] 01-01-PLAN.md — Add sharedHelpersFile to Options type, defaultOptions(), and update inline snapshot
+- [x] 01-01-PLAN.md — Add sharedHelpersFile to Options type, defaultOptions(), and update inline snapshot
 
 ### Phase 2: Shared File Generator
 **Goal**: A `generateSharedHelpers(options)` function exists that returns correct `proto-shared.ts` content — all 23 movable helpers, properly exported, in correct order
@@ -71,7 +71,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Option Registration | 0/? | Not started | - |
+| 1. Option Registration | 1/1 | Complete | 2026-02-27 |
 | 2. Shared File Generator | 0/? | Not started | - |
 | 3. Import Injection and Wiring | 0/? | Not started | - |
 | 4. Integration Test | 0/? | Not started | - |
