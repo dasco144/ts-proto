@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-02-27T22:11:02.739Z"
+last_updated: "2026-02-28T22:26:53Z"
 progress:
-  total_phases: 2
+  total_phases: 4
   completed_phases: 2
-  total_plans: 3
-  completed_plans: 3
+  total_plans: 7
+  completed_plans: 4
 ---
 
 # Project State
@@ -18,23 +18,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-02-27)
 
 **Core value:** Eliminate duplication of common types and helpers across generated files — declare once, import everywhere
-**Current focus:** Phase 2 - Shared File Generator
+**Current focus:** Phase 3 - Import Injection and Wiring
 
 ## Current Position
 
-Phase: 2 of 4 (Shared File Generator)
-Plan: 2 of 2 in current phase (complete)
-Status: Phase 2 Plan 2 complete
-Last activity: 2026-02-28 — Completed 02-02-PLAN.md
+Phase: 3 of 4 (Import Injection and Wiring)
+Plan: 1 of 2 in current phase (complete)
+Status: Phase 3 Plan 1 complete
+Last activity: 2026-02-28 — Completed 03-01-PLAN.md
 
-Progress: [███░░░░░░░] 30%
+Progress: [████░░░░░░] 40%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
+- Total plans completed: 4
 - Average duration: 1.5 min
-- Total execution time: 3 min
+- Total execution time: 4 min
 
 **By Phase:**
 
@@ -42,9 +42,10 @@ Progress: [███░░░░░░░] 30%
 |-------|-------|-------|----------|
 | 01-option-registration | 1 | 1 min | 1 min |
 | 02-shared-file-generator | 2 | 4 min | 2 min |
+| 03-import-injection-and-wiring | 1 | 1 min | 1 min |
 
 **Recent Trend:**
-- Last 5 plans: 1 min, 2 min, 2 min
+- Last 5 plans: 1 min, 2 min, 2 min, 1 min
 - Trend: -
 
 *Updated after each plan completion*
@@ -67,6 +68,8 @@ Recent decisions affecting current work:
 - 19 movable helpers in generateSharedHelpers; 7 excluded for referencing user-generated types
 - generateSharedHelpers takes only Options (not ctx/utils) — plugin.ts does not create a utils/ctx for the shared block
 - sharedHelpersFile block placed after outputTypeRegistry block and before outputIndex block for consistent ordering
+- conditionalUtils string is './proto-shared' + importSuffix; ts-poet's maybeRelativePath resolves relative path per output file automatically
+- Only the per-file generation block gets conditionalUtils; proto-shared.ts and typeRegistry.ts blocks must NOT receive it
 
 ### Pending Todos
 
@@ -79,5 +82,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-28
-Stopped at: Completed 02-02-PLAN.md (Phase 2 plan 2 of 2)
+Stopped at: Completed 03-01-PLAN.md (Phase 3 plan 1 of 2)
 Resume file: None

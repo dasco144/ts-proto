@@ -20,9 +20,9 @@
 
 ### Per-File Import Injection
 
-- [ ] **IMP-01**: When `sharedHelpersFile=true`, each generated `.ts` file imports movable helpers from `proto-shared.ts` instead of declaring them inline
-- [ ] **IMP-02**: Import paths are correctly computed as relative paths (e.g., `./proto-shared`, `../proto-shared`, `../../proto-shared`) based on the generated file's output location
-- [ ] **IMP-03**: `importSuffix` option is respected in the import path (e.g., `proto-shared.js` when `importSuffix=.js`)
+- [x] **IMP-01**: When `sharedHelpersFile=true`, each generated `.ts` file imports movable helpers from `proto-shared.ts` instead of declaring them inline
+- [x] **IMP-02**: Import paths are correctly computed as relative paths (e.g., `./proto-shared`, `../proto-shared`, `../../proto-shared`) based on the generated file's output location
+- [x] **IMP-03**: `importSuffix` option is respected in the import path (e.g., `proto-shared.js` when `importSuffix=.js`)
 
 ### Backwards Compatibility
 
@@ -63,9 +63,9 @@
 | GEN-03 | Phase 2 | Complete |
 | GEN-04 | Phase 2 | Complete |
 | GEN-05 | Phase 2 | Complete |
-| IMP-01 | Phase 3 | Pending |
-| IMP-02 | Phase 3 | Pending |
-| IMP-03 | Phase 3 | Pending |
+| IMP-01 | Phase 3 | Complete |
+| IMP-02 | Phase 3 | Complete |
+| IMP-03 | Phase 3 | Complete |
 | COMPAT-01 | Phase 3 | Pending |
 | COMPAT-02 | Phase 3 | Pending |
 | TEST-01 | Phase 4 | Pending |
