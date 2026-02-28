@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package sharedhelpers.nested;
+
+// Minimal message — purpose is to validate ../../proto-shared import path at depth-2
+message Minimal {
+  string id = 1;
+}
