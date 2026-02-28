@@ -33,32 +33,29 @@ export function generateSharedHelpers(options: Options): Code {
   //   utils.FieldMaskWrapperFns, utils.fromProtoObjectId, utils.fromJsonObjectId, utils.toProtoObjectId
   // Note: utils.Long is an Import (not ConditionalOutput) and must never be in this array.
   helpers.push(
-    utils.bytesFromBase64 as ConditionalOutput,
-    utils.base64FromBytes as ConditionalOutput,
+    utils.bytesFromBase64,
+    utils.base64FromBytes,
     utils.Builtin,
     utils.Exact,
     utils.DeepPartial,
-    utils.numberToLong as ConditionalOutput,
-    utils.longToNumber as ConditionalOutput,
-    utils.toTimestamp as ConditionalOutput,
-    utils.fromTimestamp as ConditionalOutput,
-    utils.fromJsonTimestamp as ConditionalOutput,
+    utils.numberToLong,
+    utils.longToNumber,
+    utils.toTimestamp,
+    utils.fromTimestamp,
+    utils.fromJsonTimestamp,
     utils.isObject,
     utils.isSet,
     utils.MessageFns,
     utils.ExtensionFns,
     utils.ExtensionHolder,
     utils.Extension,
-    utils.fail as ConditionalOutput,
+    utils.fail,
   );
 
   // GrpcWebError references grpc namespace types (grpc.Code, grpc.Metadata) that are only
   // available when outputClientImpl="grpc-web". Only include it in the shared file then.
   if (options.outputClientImpl === "grpc-web") {
-    helpers.push(
-      utils.NiceGrpcServerStreamingMethodResult as ConditionalOutput,
-      utils.GrpcWebError as ConditionalOutput,
-    );
+    helpers.push(utils.NiceGrpcServerStreamingMethodResult, utils.GrpcWebError);
   }
 
   return generateConditionalsUtils(helpers);
