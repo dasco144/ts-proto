@@ -503,11 +503,11 @@ export function makeUtils(options: Options): Utils {
     ...makeObjectIdMethods(),
     ...makeTimestampMethods(options, longs, bytes),
     ...longs,
-    ...makeComparisonUtils(),
+    ...makeComparisonUtils(options),
     ...makeNiceGrpcServerStreamingMethodResult(options),
     ...makeGrpcWebErrorClass(bytes),
     ...extension,
-    ...makeAssertionUtils(bytes),
+    ...makeAssertionUtils(options, bytes),
     ...makeMessageFns(options, deepPartial, extension),
   };
 }
@@ -541,10 +541,12 @@ function makeProtobufStructWrapper(options: Options) {
 function makeLongUtils(options: Options, bytes: ReturnType<typeof makeByteUtils>) {
   const Long = imp("Long=long");
 
+  const maybeExport = options.exportCommonSymbols ? "export " : "";
+
   const numberToLong = conditionalOutput(
     "numberToLong",
     code`
-      function numberToLong(number: number) {
+      ${maybeExport}function numberToLong(number: number) {
         return ${Long}.fromNumber(number);
       }
     `,
@@ -553,7 +555,7 @@ function makeLongUtils(options: Options, bytes: ReturnType<typeof makeByteUtils>
   const longToNumber = conditionalOutput(
     "longToNumber",
     code`
-      function longToNumber(int64: { toString(): string }): number {
+      ${maybeExport}function longToNumber(int64: { toString(): string }): number {
         const num = ${bytes.globalThis}.Number(int64.toString());
         if (num > ${bytes.globalThis}.Number.MAX_SAFE_INTEGER) {
           throw new ${bytes.globalThis}.Error("Value is larger than Number.MAX_SAFE_INTEGER")
@@ -585,7 +587,7 @@ function makeByteUtils(options: Options) {
       })();
     `,
   );
-  const globalThis = options.globalThisPolyfill ? globalThisPolyfill : conditionalOutput("globalThis", code``);
+  const globalThis = options.globalThisPolyfill ? globalThisPolyfill : code`globalThis`;
 
   function getBytesFromBase64Snippet() {
     const bytesFromBase64NodeSnippet = code`
@@ -617,10 +619,12 @@ function makeByteUtils(options: Options) {
     }
   }
 
+  const exportPrefix = options.exportCommonSymbols ? "export " : "";
+
   const bytesFromBase64 = conditionalOutput(
     "bytesFromBase64",
     code`
-      function bytesFromBase64(b64: string): Uint8Array {
+      ${exportPrefix}function bytesFromBase64(b64: string): Uint8Array {
         ${getBytesFromBase64Snippet()}
       }
     `,
@@ -658,7 +662,7 @@ function makeByteUtils(options: Options) {
   const base64FromBytes = conditionalOutput(
     "base64FromBytes",
     code`
-      function base64FromBytes(arr: Uint8Array): string {
+      ${exportPrefix}function base64FromBytes(arr: Uint8Array): string {
         ${getBase64FromBytesSnippet()}
       }
     `,
@@ -941,6 +945,7 @@ function makeTimestampMethods(
   bytes: ReturnType<typeof makeByteUtils>,
 ) {
   const Timestamp = impProto(options, "google/protobuf/timestamp", wrapTypeName(options, "Timestamp"));
+  const maybeExport = options.exportCommonSymbols ? "export " : "";
   const NanoDate = imp("NanoDate=nano-date");
 
   let seconds: string | Code = "Math.trunc(date.getTime() / 1_000)";
@@ -965,7 +970,7 @@ function makeTimestampMethods(
     "toTimestamp",
     options.useDate === DateOption.STRING
       ? code`
-          function toTimestamp(dateStr: string): ${Timestamp} {
+          ${maybeExport}function toTimestamp(dateStr: string): ${Timestamp} {
             const date = new ${bytes.globalThis}.Date(dateStr);
             const seconds = ${seconds};
             const nanos = (date.getTime() % 1_000) * 1_000_000;
@@ -974,7 +979,7 @@ function makeTimestampMethods(
         `
       : options.useDate === DateOption.STRING_NANO
         ? code`
-          function toTimestamp(dateStr: string): ${Timestamp} {
+          ${maybeExport}function toTimestamp(dateStr: string): ${Timestamp} {
             const nanoDate = new ${NanoDate}(dateStr);
 
             const date = {
@@ -991,19 +996,19 @@ function makeTimestampMethods(
         `
         : options.useDate === DateOption.TEMPORAL
           ? code`
-            function toTimestamp(instant: Temporal.Instant): ${Timestamp} {
+            ${maybeExport}function toTimestamp(instant: Temporal.Instant): ${Timestamp} {
               const date = {
                 getTime: (): number => instant.epochMilliseconds,
               } as const;
               const seconds = ${seconds};
               const remainder = instant.round({ smallestUnit: "seconds",  roundingMode: "floor" }).until(instant);
               const nanos = (remainder.milliseconds * 1_000_000) + (remainder.microseconds * 1_000) + remainder.nanoseconds;
-            
+
               return { ${maybeTypeField} seconds, nanos };
             }
           `
           : code`
-          function toTimestamp(date: Date): ${Timestamp} {
+          ${maybeExport}function toTimestamp(date: Date): ${Timestamp} {
             const seconds = ${seconds};
             const nanos = (date.getTime() % 1_000) * 1_000_000;
             return { ${maybeTypeField} seconds, nanos };
@@ -1015,7 +1020,7 @@ function makeTimestampMethods(
     "fromTimestamp",
     options.useDate === DateOption.STRING
       ? code`
-          function fromTimestamp(t: ${Timestamp}): string {
+          ${maybeExport}function fromTimestamp(t: ${Timestamp}): string {
             let millis = (${toNumberCode} || 0) * 1_000;
             millis += (t.nanos || 0) / 1_000_000;
             return new ${bytes.globalThis}.Date(millis).toISOString();
@@ -1023,7 +1028,7 @@ function makeTimestampMethods(
         `
       : options.useDate === DateOption.STRING_NANO
         ? code`
-          function fromTimestamp(t: ${Timestamp}): string {
+          ${maybeExport}function fromTimestamp(t: ${Timestamp}): string {
             const seconds = ${toNumberCode} || 0;
             const nanos = (t.nanos || 0) % 1_000;
             const micros = Math.trunc(((t.nanos || 0) % 1_000_000) / 1_000)
@@ -1039,7 +1044,7 @@ function makeTimestampMethods(
         `
         : options.useDate === DateOption.TEMPORAL
           ? code`
-            function fromTimestamp(t: ${Timestamp}): Temporal.Instant {
+            ${maybeExport}function fromTimestamp(t: ${Timestamp}): Temporal.Instant {
               const seconds = ${toNumberCode} || 0;
               return ${bytes.globalThis}.Temporal.Instant
                 .fromEpochMilliseconds(seconds * 1_000)
@@ -1047,7 +1052,7 @@ function makeTimestampMethods(
             }
           `
           : code`
-          function fromTimestamp(t: ${Timestamp}): Date {
+          ${maybeExport}function fromTimestamp(t: ${Timestamp}): Date {
             let millis = (${toNumberCode} || 0) * 1_000;
             millis += (t.nanos || 0) / 1_000_000;
             return new ${bytes.globalThis}.Date(millis);
@@ -1059,7 +1064,7 @@ function makeTimestampMethods(
     "fromJsonTimestamp",
     options.useDate === DateOption.DATE
       ? code`
-        function fromJsonTimestamp(o: any): Date {
+        ${maybeExport}function fromJsonTimestamp(o: any): Date {
           if (o instanceof ${bytes.globalThis}.Date) {
             return o;
           } else if (typeof o === "string") {
@@ -1071,7 +1076,7 @@ function makeTimestampMethods(
       `
       : options.useDate === DateOption.TEMPORAL
         ? code`
-          function fromJsonTimestamp(o: any): Temporal.Instant {
+          ${maybeExport}function fromJsonTimestamp(o: any): Temporal.Instant {
             if (o instanceof ${bytes.globalThis}.Date) {
               return ${bytes.globalThis}.Temporal.Instant.fromEpochMilliseconds(o.getTime());
             } else if (typeof o === "string") {
@@ -1082,7 +1087,7 @@ function makeTimestampMethods(
           }
         `
         : code`
-        function fromJsonTimestamp(o: any): ${wrapTypeName(options, "Timestamp")} {
+        ${maybeExport}function fromJsonTimestamp(o: any): ${wrapTypeName(options, "Timestamp")} {
           if (o instanceof ${bytes.globalThis}.Date) {
             return ${toTimestamp}(o);
           } else if (typeof o === "string") {
@@ -1097,11 +1102,13 @@ function makeTimestampMethods(
   return { toTimestamp, fromTimestamp, fromJsonTimestamp };
 }
 
-function makeComparisonUtils() {
+function makeComparisonUtils(options: Options) {
+  const maybeExport = options.exportCommonSymbols ? "export " : "";
+
   const isObject = conditionalOutput(
     "isObject",
     code`
-    function isObject(value: any): boolean {
+    ${maybeExport}function isObject(value: any): boolean {
       return typeof value === 'object' && value !== null;
     }`,
   );
@@ -1109,7 +1116,7 @@ function makeComparisonUtils() {
   const isSet = conditionalOutput(
     "isSet",
     code`
-    function isSet(value: any): boolean {
+    ${maybeExport}function isSet(value: any): boolean {
       return value !== null && value !== undefined;
     }`,
   );
@@ -1171,11 +1178,13 @@ function makeExtensionClass(options: Options) {
   return { Extension };
 }
 
-function makeAssertionUtils(bytes: ReturnType<typeof makeByteUtils>) {
+function makeAssertionUtils(options: Options, bytes: ReturnType<typeof makeByteUtils>) {
+  const maybeExport = options.exportCommonSymbols ? "export " : "";
+
   const fail = conditionalOutput(
     "fail",
     code`
-      function fail(message?: string): never {
+      ${maybeExport}function fail(message?: string): never {
         throw new ${bytes.globalThis}.Error(message ?? "Failed");
       }
     `,

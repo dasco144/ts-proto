@@ -48,11 +48,18 @@ export function generateSharedHelpers(options: Options): Code {
     utils.MessageFns,
     utils.ExtensionFns,
     utils.ExtensionHolder,
-    utils.NiceGrpcServerStreamingMethodResult as ConditionalOutput,
-    utils.GrpcWebError as ConditionalOutput,
     utils.Extension,
     utils.fail as ConditionalOutput,
   );
+
+  // GrpcWebError references grpc namespace types (grpc.Code, grpc.Metadata) that are only
+  // available when outputClientImpl="grpc-web". Only include it in the shared file then.
+  if (options.outputClientImpl === "grpc-web") {
+    helpers.push(
+      utils.NiceGrpcServerStreamingMethodResult as ConditionalOutput,
+      utils.GrpcWebError as ConditionalOutput,
+    );
+  }
 
   return generateConditionalsUtils(helpers);
 }
