@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package sharedhelpers;
+
+// Exercises all movable helper groups:
+//   bytes  -> bytesFromBase64 / base64FromBytes
+//   Timestamp -> toTimestamp / fromTimestamp / fromJsonTimestamp
+//   map    -> isSet (used in map iteration)
+//   repeated + nested messages -> DeepPartial, Exact, MessageFns, isSet
+message Helpers {
+  bytes data = 1;
+  google.protobuf.Timestamp created_at = 2;
+  map<string, google.protobuf.Timestamp> timestamp_map = 3;
+  repeated Item items = 4;
+  Item nested_item = 5;
+}
+
+// int64 exercises longToNumber / numberToLong
+message Item {
+  string name = 1;
+  int64 value = 2;
+}
