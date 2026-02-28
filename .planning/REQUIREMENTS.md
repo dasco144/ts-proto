@@ -33,7 +33,7 @@
 
 - [x] **TEST-01**: New integration test case exists with `sharedHelpersFile=true` that validates `proto-shared.ts` is generated with correct content
 - [x] **TEST-02**: Integration test validates that generated `.ts` files import from `proto-shared.ts` instead of inlining helpers
-- [ ] **TEST-03**: Integration test committed snapshot artifacts are up to date
+- [x] **TEST-03**: Integration test committed snapshot artifacts are up to date
 
 ## v2 Requirements
 
@@ -70,7 +70,7 @@
 | COMPAT-02 | Phase 3 | Complete |
 | TEST-01 | Phase 4 | Complete |
 | TEST-02 | Phase 4 | Complete |
-| TEST-03 | Phase 4 | Pending |
+| TEST-03 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 15 total

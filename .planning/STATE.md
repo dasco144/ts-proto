@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-02-28T06:35:56.891Z"
+last_updated: "2026-02-28T06:45:14Z"
 progress:
   total_phases: 4
   completed_phases: 3
   total_plans: 7
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # Project State
@@ -22,12 +22,12 @@ See: .planning/PROJECT.md (updated 2026-02-27)
 
 ## Current Position
 
-Phase: 4 of 4 (Integration Test) — IN PROGRESS
-Plan: 1 of 3 in current phase (complete)
-Status: Phase 4 plan 1 complete — fixture files created
-Last activity: 2026-02-28 — Completed 04-01-PLAN.md
+Phase: 4 of 4 (Integration Test) — COMPLETE
+Plan: 2 of 3 in current phase (complete)
+Status: Phase 4 plan 2 complete — generated snapshots committed, all tests pass
+Last activity: 2026-02-28 — Completed 04-02-PLAN.md
 
-Progress: [███████░░░] 70%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -43,7 +43,7 @@ Progress: [███████░░░] 70%
 | 01-option-registration | 1 | 1 min | 1 min |
 | 02-shared-file-generator | 2 | 4 min | 2 min |
 | 03-import-injection-and-wiring | 2 | 2 min | 1 min |
-| 04-integration-test | 1 (of 3) | 1 min | 1 min |
+| 04-integration-test | 2 (of 3) | 9 min | 4.5 min |
 
 **Recent Trend:**
 - Last 5 plans: 1 min, 2 min, 2 min, 1 min, 1 min
@@ -75,6 +75,9 @@ Recent decisions affecting current work:
 - [Phase 04-integration-test]: One root helpers.proto covers all four movable helper groups (bytes, Timestamp, map, repeated+int64) for comprehensive fixture coverage
 - [Phase 04-integration-test]: subdir/nested/minimal.proto at depth-2 validates ../../proto-shared import path for IMP-02 regression target
 - [Phase 04-integration-test]: shared-helpers-test.ts imports from ./helpers (generated file) not ./proto-shared directly — validates full import chain
+- [Phase 04-02]: Function helpers need export keyword in proto-shared.ts — fixed by threading exportCommonSymbols through all makeXxx helper functions
+- [Phase 04-02]: conditionalOutput with empty declaration causes import in conditionalUtils mode — use code`globalThis` plain snippet instead
+- [Phase 04-02]: GrpcWebError conditionally excluded from proto-shared.ts when outputClientImpl != grpc-web (grpc namespace dependency)
 
 ### Pending Todos
 
@@ -87,5 +90,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-28
-Stopped at: Completed 04-01-PLAN.md (Phase 4 plan 1 — shared-helpers fixture files created)
+Stopped at: Completed 04-02-PLAN.md (Phase 4 plan 2 — snapshots generated and committed, all tests pass)
 Resume file: None
